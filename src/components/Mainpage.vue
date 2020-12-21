@@ -16,12 +16,12 @@
             <span class="md-error">There is an error</span>
           </md-field>
 
-          <md-field class="md-layout-item md-size-45 md-small-size-100">
+          <md-field class="md-layout-item md-size-40 md-small-size-100">
             <label>Количество баллов</label>
             <md-input v-model="number" type="number"></md-input>
           </md-field>
 
-          <md-field class="md-layout-item md-size-45 md-small-size-100">
+          <md-field class="md-layout-item md-size-40 md-small-size-100">
             <label>Type here!</label>
             <md-input v-model="userName"></md-input>
           </md-field>
