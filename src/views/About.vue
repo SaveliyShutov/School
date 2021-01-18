@@ -3,14 +3,28 @@
     <md-button v-on:click="readStore" class="md-raised md-accent"
       >Accent</md-button
     >
-    <ul>
-      <li v-for="item in answersArray" :key="item.userName">
-        {{ item.textarea }}
-         {{ item.userName }}
-          {{ item.number }}
-          
-      </li>
-    </ul>
+    <div class="md-layout md-alignment-center">
+      <div
+        v-for="item in answersArray"
+        :key="item.userName"
+        class="md-layout-item md-size-50  md-xsmall-size-100"
+      >
+        <md-card md-with-hover>
+          <md-ripple>
+            <md-card-header> </md-card-header>
+
+            <md-card-content>
+              {{ item.textarea }} | {{ item.userName }} | {{ item.number }}
+            </md-card-content>
+
+            <md-card-actions>
+              <md-button>Action</md-button>
+              <md-button>Action</md-button>
+            </md-card-actions>
+          </md-ripple>
+        </md-card>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -48,3 +62,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+.md-layout-item {
+ 
+  margin: 10px;
+}
+</style>
