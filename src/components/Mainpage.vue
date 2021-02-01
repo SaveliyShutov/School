@@ -30,6 +30,7 @@
             <md-button type="submit" class="md-primary" :disabled="sending"
               >Отправить</md-button
             >
+           
           </md-card-actions>
         </md-card>
 
@@ -52,6 +53,7 @@ export default {
       textarea: "",
       number: 0,
       userName: "",
+     
     };
   },
   methods: {
@@ -59,6 +61,7 @@ export default {
       db.collection("Answers")
         .add(this.createObject())
         .then(function (docRef) {
+          
           console.log("Document written with ID: ", docRef.id);
         })
         .catch(function (error) {
