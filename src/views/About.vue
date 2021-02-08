@@ -3,6 +3,7 @@
     <md-button v-on:click="readStore" class="md-raised md-accent"
       >Обновить</md-button
     >
+
     <div class="md-layout md-alignment-center">
       <div
         v-for="item in answersArray"
@@ -14,7 +15,8 @@
             <md-card-header> </md-card-header>
 
             <md-card-content>
-              {{ item.textarea }} | {{ item.userName }} | {{ item.number }} | {{item.refId}}
+              {{ item.textarea }} | {{ item.userName }} | {{ item.number }} |
+              {{ item.refId }}
             </md-card-content>
 
             <md-card-actions>
@@ -36,6 +38,11 @@
                 </md-button>
               </md-badge>
             </md-card-actions>
+            <md-button
+              v-on:click="readLikes(item.refId)"
+              class="md-raised md-accent"
+              >Update</md-button
+            >
             <md-button class="md-raised">Ответить</md-button>
           </md-ripple>
         </md-card>
@@ -57,7 +64,6 @@ export default {
       answersArray: [],
       likeAr: 0,
       dislikeAr: 0,
-     
     };
   },
   methods: {
@@ -69,9 +75,9 @@ export default {
           querySnapshot.forEach(function (doc) {
             // doc.data() is never undefined for query doc snapshots
             console.log(doc.id, " => ", doc.data());
-            let tempObj ; 
+            let tempObj;
             tempObj = doc.data();
-            tempObj.refId=doc.id;           
+            tempObj.refId = doc.id;
             arr.push(tempObj);
           });
         })
@@ -86,7 +92,6 @@ export default {
       db.collection("Answers")
         .add(this.like())
         .then(function (docRef) {
-         
           console.log("Document written with ID: ", docRef.id);
         })
         .catch(function (error) {
@@ -100,10 +105,27 @@ export default {
         number: this.number,
       };
     },
-  },
+    dislike: function () {
+      this.dislikeAr = this.dislikeAr + 1;
+    },
+    readLikes(ref) {
+    
+      var docRef = db.collection("Answers").doc(ref);
 
-  dislike() {
-    this.dislikeAr = this.dislikeAr + 1;
+      docRef
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            console.log("Document data:", doc.data());
+          } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+          }
+        })
+        .catch((error) => {
+          console.log("Error getting document:", error);
+        });
+    },
   },
 };
 </script>
