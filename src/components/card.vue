@@ -10,24 +10,57 @@
         :key="item.userName"
         class="md-layout-item md-size-50 md-xsmall-size-100"
       >
-       <card></card>
+        <md-card md-with-hover>
+          <md-ripple>
+            <md-card-header> </md-card-header>
+
+            <md-card-content>
+              {{ item.textarea }} | {{ item.userName }} | {{ item.number }} 
+              
+            </md-card-content>
+
+            <md-card-actions>
+              <md-badge class="md-primary" :md-content="likeAr">
+                <md-button
+                  class="md-icon-button"
+                  v-on:click="Likes(item.refId)"
+                >
+                  <img
+                    src="https://clipart-best.com/img/like/like-clip-art-77.png"
+                  />
+                </md-button>
+              </md-badge>
+            </md-card-actions>
+
+            <md-card-actions>
+              <md-badge class="md-primary" :md-content="dislikeAr">
+                <md-button
+                  class="md-icon-button"
+                  v-on:click="disLikes(item.refId)"
+                >
+                  <img
+                    src="https://cdn0.iconfinder.com/data/icons/basic-ui-elements-colored/700/08_thumbs_down-3-512.png"
+                  />
+                </md-button>
+              </md-badge>
+            </md-card-actions>
+
+            <md-button class="md-raised">Ответить</md-button>
+          </md-ripple>
+        </md-card>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import card from "../components/card"
 import firebase from "../../firebaseinit";
 import "firebase/firestore";
-import Card from '../components/card.vue';
 const db = firebase.firestore();
 
 export default {
   name: "About",
-  components: {
-    card
-   
-  },
+  components: {},
   data: function () {
     return {
       answersArray: [],

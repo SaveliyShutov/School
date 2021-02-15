@@ -53,8 +53,7 @@ export default {
       textarea: "",
       number: 0,
       userName: "",
-      likes: 0,
-      dislikes: 0,
+     
      
     };
   },
@@ -72,9 +71,8 @@ export default {
     this.textarea="",
     this.number=0,
     this.userName=""
-    this.likes=0
-    this.dislikes=0
-    },
+   
+     },
     createObject: function () {
       return {
         textarea: this.textarea,
