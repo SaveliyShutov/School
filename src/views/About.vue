@@ -5,34 +5,34 @@
     >
 
     <div class="md-layout md-alignment-center">
-      <div
-        v-for="item in answersArray"
-        :key="item.userName"
-        class="md-layout-item md-size-50 md-xsmall-size-100"
-      >
-       <card></card>
-    </div>
+   
+       <Card  v-for="(item, index) in answersArray"
+        :key="index"
+        :item="item"
+        :index="index"
+        class="md-layout-item md-size-50 md-xsmall-size-100"></Card>
+   
   </div>
+  </div> 
 </template>
 
 <script>
-import card from "../components/card"
+
 import firebase from "../../firebaseinit";
 import "firebase/firestore";
-import Card from '../components/card.vue';
+import Card from '../components/card';
 const db = firebase.firestore();
 
 export default {
   name: "About",
   components: {
-    card
+    Card
    
   },
   data: function () {
     return {
       answersArray: [],
-      likeAr: 0,
-      dislikeAr: 0,
+     
     };
   },
   methods: {
@@ -57,36 +57,8 @@ export default {
       console.log(this.answersArray);
     },
    
-    createObject: function () {
-      return {
-        number: this.number,
-      };
-    },
     
-    //   
-    
-    Likes(ref) { 
-      this.likeAr = this.likeAr + 1;
-      var docRef = db.collection("Answers").doc(ref);
 
-      docRef.set(
-        {
-          likes:this.likeAr
-        },
-        { merge: true }
-      );
-    },
-    disLikes(ref) {
-      this.dislikeAr = this.dislikeAr + 1;
-      var docRef = db.collection("Answers").doc(ref);
-       docRef.set(
-        {
-          dislikes:this.dislikeAr
-        },
-        { merge: true }
-      );
-        
-    },
   },
 };
 </script>

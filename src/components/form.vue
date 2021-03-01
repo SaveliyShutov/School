@@ -4,33 +4,32 @@
       <form
         novalidate
         class="md-layout md-alignment-center-center"
-        @submit.prevent="sendQuestion"
+        @submit.prevent="sendAnswer"
       >
         <md-card class="md-layout-item md-layout md-size-50 md-small-size-100">
           <md-card-header>
-            <div class="md-title">Задай вопрос</div>
+            <div class="md-title">Напиши ответ</div>
           </md-card-header>
           <md-field :class="messageClass">
-            <label>Вопрос</label>
+            <label>Ответ</label>
             <md-textarea v-model="textarea" required></md-textarea>
             <span class="md-error">There is an error</span>
           </md-field>
 
-          <md-field class="md-layout-item md-size-40 md-small-size-100">
-            <label>Количество баллов</label>
-            <md-input v-model="number" type="number"></md-input>
-          </md-field>
+          
+         
 
           <md-card-actions>
             <md-button type="submit" class="md-primary" :disabled="sending"
               >Отправить</md-button
             >
+           
           </md-card-actions>
         </md-card>
 
-        <!-- <md-snackbar :md-active.sync="userSaved"
+        <md-snackbar :md-active.sync="userSaved"
           >The user {{ lastUser }} was saved with success!</md-snackbar
-        > -->
+        >
       </form>
     </div>
   </div>
@@ -41,33 +40,33 @@ import firebase from "../../firebaseinit";
 import "firebase/firestore";
 const db = firebase.firestore();
 export default {
-  name: "Mainpage",
+  name: "form",
   data: function () {
     return {
       textarea: "",
-      number: 0,
-      userName: "",
+      
+     
+     
     };
   },
   methods: {
-    sendQuestion: function () {
+    sendAnswer: function () {
       db.collection("Answers")
         .add(this.createObject())
         .then(function (docRef) {
+          
           console.log("Document written with ID: ", docRef.id);
         })
         .catch(function (error) {
           console.error("Error adding document: ", error);
         });
-      (this.textarea = ""), (this.number = 0), (this.userName = "");
-    },
+    this.textarea=""
+   
+   },
     createObject: function () {
       return {
         textarea: this.textarea,
-        number: this.number,
-        userName: this.userName,
-        likes: this.likes,
-        dislikes: this.dislikes
+      
       };
     },
   },

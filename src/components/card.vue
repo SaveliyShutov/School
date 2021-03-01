@@ -1,22 +1,12 @@
 <template>
-  <div class="about">
-    <md-button v-on:click="readStore" class="md-raised md-accent"
-      >Обновить</md-button
-    >
-
-    <div class="md-layout md-alignment-center">
-      <div
-        v-for="item in answersArray"
-        :key="item.userName"
-        class="md-layout-item md-size-50 md-xsmall-size-100"
-      >
-        <md-card md-with-hover>
+  <div >   
+         <md-card md-with-hover>
           <md-ripple>
             <md-card-header> </md-card-header>
 
             <md-card-content>
               {{ item.textarea }} | {{ item.userName }} | {{ item.number }} 
-              
+        
             </md-card-content>
 
             <md-card-actions>
@@ -26,8 +16,7 @@
                   v-on:click="Likes(item.refId)"
                 >
                   <img
-                    src="https://clipart-best.com/img/like/like-clip-art-77.png"
-                  />
+                    src="https://clipart-best.com/img/like/like-clip-art-77.png" />
                 </md-button>
               </md-badge>
             </md-card-actions>
@@ -49,8 +38,7 @@
           </md-ripple>
         </md-card>
       </div>
-    </div>
-  </div>
+ 
 </template>
 
 <script>
@@ -59,44 +47,21 @@ import "firebase/firestore";
 const db = firebase.firestore();
 
 export default {
-  name: "About",
+  name: "Card",
   components: {},
   data: function () {
     return {
-      answersArray: [],
-      likeAr: 0,
-      dislikeAr: 0,
+   
+      likeAr: this.item.likes,
+      dislikeAr: this.item.dislikes,
     };
   },
-  methods: {
-    readStore() {
-      let arr = [];
-      db.collection("Answers")
-        .get()
-        .then(function (querySnapshot) {
-          querySnapshot.forEach(function (doc) {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-            let tempObj;
-            tempObj = doc.data();
-            tempObj.refId = doc.id;
-            arr.push(tempObj);
-          });
-        })
-        .catch(function (error) {
-          console.log("Error getting documents: ", error);
-        });
-      this.answersArray = arr;
-      console.log(this.answersArray);
-    },
-   
-    createObject: function () {
-      return {
-        number: this.number,
-      };
-    },
+    props: {
+    item: Object,
+    index:Number
+  },
+  methods: {       
     
-    //   
     
     Likes(ref) { 
       this.likeAr = this.likeAr + 1;
