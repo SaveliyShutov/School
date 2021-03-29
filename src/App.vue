@@ -1,9 +1,11 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">main page</router-link> |
-      <router-link to="/about">Profile</router-link>|
-      <router-link to="/form">Answer</router-link>
+      <router-link to="/QuestionForm">Question form</router-link> |
+      <router-link to="/Answers">Answers</router-link> |
+      <router-link to="/AnswerForm">Answer form</router-link>  |
+      <router-link to="/Log">Log in</router-link> |
+      <router-link to="/Reg">Registration</router-link>
     </div>
     <router-view />
   </div>
@@ -11,7 +13,6 @@
 
 <style>
 #app {
- 
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -20,7 +21,7 @@
 }
 
 #nav {
-   background-color: #7b68ee;
+  background-color: #7b68ee;
   padding: 30px;
 }
 

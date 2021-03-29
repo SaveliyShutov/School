@@ -45,8 +45,9 @@ export default {
   data: function () {
     return {
       textarea: "",
-      number: 0,
-      userName: "",
+      number: 0 ,
+      dislikes: 0,
+      likes: 0
     };
   },
   methods: {
@@ -59,13 +60,12 @@ export default {
         .catch(function (error) {
           console.error("Error adding document: ", error);
         });
-      (this.textarea = ""), (this.number = 0), (this.userName = "");
+      (this.textarea = ""), (this.number = 0), (this.likes = 0),(this.dislikes = 0);
     },
     createObject: function () {
       return {
         textarea: this.textarea,
         number: this.number,
-        userName: this.userName,
         likes: this.likes,
         dislikes: this.dislikes
       };

@@ -44,7 +44,8 @@ export default {
   data: function () {
     return {
       textarea: "",
-      
+      likes: 0,
+      dislikes: 0
      
      
     };
@@ -60,12 +61,17 @@ export default {
         .catch(function (error) {
           console.error("Error adding document: ", error);
         });
-    this.textarea=""
+    this.textarea="",
+    this.likes=0,
+    this.dislikes=0
+
    
    },
     createObject: function () {
       return {
         textarea: this.textarea,
+        likes: this.likes,
+        dislikes: this.dislikes
       
       };
     },

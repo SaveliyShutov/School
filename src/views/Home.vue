@@ -1,21 +1,31 @@
 <template>
   <div class="home">
-    <Form/>
-    <Mainpage/>
+    <AnswerForm/>
+    <QuestionForm/>
+    <Reg/>
+    <Log/>
+    <Answers/>
   </div>
 </template>
 
 <script>
 
 
-import Mainpage from '@/components/Mainpage.vue'
-import Form from '../components/form.vue'
+import AnswerForm from '@/components/Mainpage.vue'
+import QuestionForm from '../components/form.vue'
+import Reg from '../components/reg.vue'
+import Log from '../components/log.vue'
+import Answers from '../components/about.vue'
+
 
 export default {
   name: 'Home',
   components: {
-    Form,
-    Mainpage
+    QuestionForm,
+    AnswerForm,
+    Reg,
+    Log,
+    Answers
     
     
   }
