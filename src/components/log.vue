@@ -5,21 +5,45 @@
         <div class="md-title">Вход</div>
       </md-card-header>
       <md-field md-inline>
-        <label>Имя</label>
+        <label>Почта</label>
         <md-input v-model="inline"></md-input>
       </md-field>
       <md-field md-inline>
         <label>Пароль</label>
         <md-input v-model="inline"></md-input>
       </md-field>
+      <md-button type="submit" class="md-primary">Отправить</md-button>
     </md-card>
+       
   </div>
 </template>
 <script>
-//import from
 
+import firebase from "firebase";
 export default {
-  setup() {},
+  data() {
+    return {
+      form: {
+        email: "",
+        password: ""
+      },
+      error: null
+    };
+  },
+  methods: {
+    submit() {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.form.email, this.form.password)
+        .then(data => {
+          console.log(data)
+        })
+        .catch(err => {
+          this.error = err.message;
+        });
+    }
+  }
+  
 };
 </script>
 <style scoped>
