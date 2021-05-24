@@ -22,7 +22,8 @@
           </md-field>
 
           <md-card-actions>
-            <md-button type="submit" class="md-primary" :disabled="sending"
+           
+            <md-button v-on:keyup.enter="submit" type="submit" class="md-primary" :disabled="sending"
               >Отправить</md-button>
             
           </md-card-actions>
@@ -32,6 +33,7 @@
           >The user {{ lastUser }} was saved with success!</md-snackbar
         > -->
       </form>
+      
     </div>
   </div>
 </template>
@@ -44,6 +46,7 @@ export default {
   name: "Mainpage",
   data: function () {
     return {
+     
       textarea: "",
       number: 0 ,
       dislikes: 0,
@@ -51,6 +54,7 @@ export default {
     };
   },
   methods: {
+    
     sendQuestion: function () {
       db.collection("Answers")
         .add(this.createObject())

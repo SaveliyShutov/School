@@ -5,11 +5,16 @@ import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 import store from './store'
-// import * as firebase from "firebase";
+import firebase from "../firebaseinit";
 
 Vue.use(VueMaterial)
 
 Vue.config.productionTip = false
+
+
+firebase.auth().onAuthStateChanged(user => {
+  store.dispatch("fetchUser", user);
+});
 
 new Vue({
   router,

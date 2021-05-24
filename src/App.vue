@@ -3,13 +3,31 @@
     <div id="nav">
       <router-link to="/QuestionForm">Question form</router-link> |
       <router-link to="/Answers">Answers</router-link> |
-      <router-link to="/AnswerForm">Answer form</router-link>  |
+      <router-link to="/Form">Form</router-link>  |
       <router-link to="/Log">Log in</router-link> |
       <router-link to="/Reg">Registration</router-link>
+      <md-button v-on:click="signOut()" class="md-raised">LogOut</md-button>
     </div>
     <router-view />
   </div>
 </template>
+<script>
+import firebase from "firebase";
+export default ({
+  methods: {
+    signOut() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.replace({
+            name: "Registration"
+          });
+        });
+    }
+  }
+})
+</script>
 
 <style>
 #app {

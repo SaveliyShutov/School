@@ -1,7 +1,5 @@
 <template>
   <div class="about">
-    
-
     <div class="md-layout md-alignment-center">
       <div class="md-layout-item md-size-50">
         <md-field md-inline>

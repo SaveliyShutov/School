@@ -16,14 +16,10 @@
             <span class="md-error">There is an error</span>
           </md-field>
 
-          
-         
-
           <md-card-actions>
             <md-button type="submit" class="md-primary" :disabled="sending"
               >Отправить</md-button
             >
-           
           </md-card-actions>
         </md-card>
 
@@ -31,6 +27,7 @@
           >The user {{ lastUser }} was saved with success!</md-snackbar
         >
       </form>
+     
     </div>
   </div>
 </template>
@@ -45,8 +42,7 @@ export default {
     return {
       textarea: "",
       likes: 0,
-      dislikes: 0
-     
+      dislikes: 0,
      
     };
   },
@@ -55,24 +51,18 @@ export default {
       db.collection("Answers")
         .add(this.createObject())
         .then(function (docRef) {
-          
           console.log("Document written with ID: ", docRef.id);
         })
         .catch(function (error) {
           console.error("Error adding document: ", error);
         });
-    this.textarea="",
-    this.likes=0,
-    this.dislikes=0
-
-   
-   },
+      (this.textarea = ""), (this.likes = 0), (this.dislikes = 0);
+    },
     createObject: function () {
       return {
         textarea: this.textarea,
         likes: this.likes,
-        dislikes: this.dislikes
-      
+        dislikes: this.dislikes,
       };
     },
   },
