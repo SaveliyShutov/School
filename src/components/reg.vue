@@ -1,7 +1,8 @@
 <template>
-  <div class="md-layout md-alignment-center-center">
-    <form action="#" @submit.prevent="submit">
-      <md-card class="md-layout-item md-layout md-size-30 md-small-size-80">
+
+  <div class="md-layout md-alignment-center-center ">
+     <form action="#" @submit.prevent="submit">
+      <md-card id="card" class="md-layout-item md-layout md-size-30 md-small-size-80 ">
         <md-card-header>
           <div class="md-title">Регистрация</div>
         </md-card-header>
@@ -22,12 +23,12 @@
 
         <md-button type="submit" class="md-primary">Отправить</md-button>
       </md-card>
-    </form>
+     </form>
   </div>
 </template>
 <script>
 import firebase from "firebase";
-
+import { gsap } from "gsap";
 export default {
   data() {
     return {
@@ -38,6 +39,20 @@ export default {
       },
       error: null,
     };
+  },
+   mounted() {
+    gsap.from("#card", {
+      scrollTrigger: {
+        trigger: "#card",
+        start: "top bottom-=200px",
+        once: true,
+        toggleActions: "restart pause resume pause",
+      },
+      
+      
+      x:150,
+      duration: 2,
+    });
   },
   methods: {
     submit() {
@@ -60,12 +75,18 @@ export default {
 </script>
 <style scoped>
 .md-layout-item {
-  text-align: center;
-  border-radius: 50px;
-  padding: 50px;
+ border-radius:50px;
+ padding:45px;
+ display:flex;
+ justify-content:center;
+ 
 }
-/* .md-title {
-  
-  
-} */
+form{
+  display:flex;
+  justify-content:center;
+  width: 100%;
+  text-align: center;
+  margin: 10% auto;
+}
+
 </style>

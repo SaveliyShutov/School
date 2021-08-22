@@ -2,18 +2,26 @@
   <div id="app">
     <div id="nav">
       <router-link to="/QuestionForm">Question form</router-link> |
-      <router-link to="/Answers">Answers</router-link> |
-      <router-link to="/Form">Form</router-link>  |
+      <router-link to="/">Answers</router-link> 
+   
+      <md-button v-if="user.loggedIn" v-on:click="signOut()" class="md-raised">LogOut</md-button>
+    <div v-else>
       <router-link to="/Log">Log in</router-link> |
       <router-link to="/Reg">Registration</router-link>
-      <md-button v-on:click="signOut()" class="md-raised">LogOut</md-button>
+    </div>
     </div>
     <router-view />
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
 import firebase from "firebase";
 export default ({
+  computed: {
+    ...mapGetters({
+      user: "user",
+    }),
+  },
   methods: {
     signOut() {
       firebase
@@ -41,6 +49,9 @@ export default ({
 #nav {
   background-color: #7b68ee;
   padding: 30px;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
 }
 
 #nav a {
@@ -51,4 +62,9 @@ export default ({
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+#flexEnd {
+  display:flex;
+  justify-content:flex-end;
+}
+
 </style>

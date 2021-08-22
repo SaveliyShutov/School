@@ -1,6 +1,6 @@
 <template>
   <div class="md-layout md-alignment-center-center">
-    <md-card class="md-layout-item md-layout md-size-30 md-small-size-80">
+    <md-card id="card" class="md-layout-item md-layout md-size-25 md-small-size-80 ">
       <md-card-header>
         <div class="md-title">Вход</div>
       </md-card-header>
@@ -19,6 +19,8 @@
 <script>
 import { mapGetters } from "vuex";
 import firebase from "firebase";
+import { gsap } from "gsap";
+
 export default {
   data() {
     return {
@@ -28,6 +30,20 @@ export default {
       },
       error: null,
     };
+  },
+   mounted() {
+    gsap.from("#card", {
+      scrollTrigger: {
+        trigger: "#card",
+        start: "top bottom-=200px",
+        once: true,
+        toggleActions: "restart pause resume pause",
+      },
+      
+      
+      x:-150,
+      duration: 2,
+    });
   },
   computed: {
     ...mapGetters({
@@ -56,15 +72,15 @@ export default {
 </script>
 <style scoped>
 .md-layout-item {
-  position: absolute;
-  top: 15%;
-  padding: 50px;
-  border-radius: 30px;
+ border-radius:50px;
+ padding:45px;
+ 
 }
-.md-title {
-  position: absolute;
-  left: 40%;
-  right: 40%;
-  bottom: 70%;
+.md-layout{
+  display:flex;
+  justify-content:center;
+  margin: 10% auto;
+
+
 }
 </style>

@@ -16,7 +16,7 @@ const routes = [
     component: QuestionForm
   },
   {
-    path: '/Answers',
+    path: '/',
     name: 'Answers',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route

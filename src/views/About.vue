@@ -9,7 +9,7 @@
       </div>
       <md-button v-on:click="search" class="md-icon-button">
         <img
-          src="https://www.pinclipart.com/picdir/big/3-38128_computer-icons-search-box-magnifying-glass-download-search.png"
+          src="../assets/search.png"
         />
       </md-button>
 

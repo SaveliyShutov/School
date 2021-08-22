@@ -1,6 +1,6 @@
 <template>
   <div>
-    <md-card md-with-hover>
+    <md-card class = "card" md-with-hover>
       <md-ripple>
         <md-card-header> </md-card-header>
 
@@ -127,5 +127,8 @@ export default {
 }
 .md-dialog-container {
   border-radius: 60px !important;
+}
+.card{
+  border-radius: 30px;
 }
 </style>
