@@ -12,7 +12,7 @@
           </md-card-header>
           <md-field :class="messageClass">
             <label>Вопрос</label>
-            <md-textarea v-model="textarea" required></md-textarea>
+            <md-textarea v-model="textarea" required maxlength="100"></md-textarea>
             <span class="md-error">There is an error</span>
           </md-field>
 

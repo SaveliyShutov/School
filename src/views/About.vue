@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <div class="md-layout md-alignment-center">
-      <div class="md-layout-item md-size-50">
+      <div class="md-layout-item md-xsmall-size-80 md-size-50">
         <md-field md-inline>
           <label>Искать</label>
           <md-input v-model="inline"></md-input>
@@ -18,7 +18,7 @@
         :key="index"
         :item="item"
         :index="index"
-        class="md-layout-item md-size-50 md-xsmall-size-100"
+        class="md-layout-item md-size-50 md-xsmall-size-95"
       ></Card>
     </div>
   </div>
@@ -87,6 +87,6 @@ export default {
 </script>
 <style scoped>
 .md-layout-item {
-  margin: 10px;
+  margin: 5px;
 }
 </style>
