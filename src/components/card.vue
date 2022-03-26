@@ -1,37 +1,33 @@
 <template>
   <div>
-    <md-card class = "card" md-with-hover>
+    <md-card class="card" md-with-hover>
       <md-ripple>
-        <md-card-header> </md-card-header>
-
+        <md-card-header> {{ item.textarea }}</md-card-header>
         <md-card-content>
-          {{ item.textarea }} | {{ item.userName }} | {{ item.number }}
+          {{ item.userName }}
         </md-card-content>
-
         <md-card-actions>
-          <md-badge class="md-primary" :md-content="likeAr">
-            <md-button class="md-icon-button" v-on:click="Likes(item.refId)">
-              <img
-                src="https://clipart-best.com/img/like/like-clip-art-77.png"
-              />
-            </md-button>
-          </md-badge>
+          <div class="DisAndLikes">
+            <md-badge class="md-primary" :md-content="likeAr" md-dense>
+              <md-button class="md-icon-button" v-on:click="Likes(item.refId)">
+                <span class="material-icons"> thumb_up_off_alt </span>
+              </md-button>
+            </md-badge>
+            <md-badge :md-content="dislikeAr">
+              <md-button
+                class="md-icon-button"
+                v-on:click="disLikes(item.refId)"
+              >
+                <span class="material-icons"> thumb_down </span>
+              </md-button>
+            </md-badge>
+          </div>
+          <router-link :to="{ name: 'AnswerForm', params: { user: Ivan } }">
+            <md-button v-on:click="toAnsForm(item.refId)" class="md-raised"
+              >Ответить</md-button
+            >
+          </router-link>
         </md-card-actions>
-
-        <md-card-actions>
-          <md-badge class="md-primary" :md-content="dislikeAr">
-            <md-button class="md-icon-button" v-on:click="disLikes(item.refId)">
-              <img
-                src="https://cdn0.iconfinder.com/data/icons/basic-ui-elements-colored/700/08_thumbs_down-3-512.png"
-              />
-            </md-button>
-          </md-badge>
-        </md-card-actions>
-<router-link :to="{name:'AnswerForm', params:{user: Ivan}}">
-        <md-button v-on:click="toAnsForm (item.refId);" class="md-raised"
-          >Ответить</md-button
-        >
-</router-link>
       </md-ripple>
     </md-card>
 
@@ -118,9 +114,6 @@ export default {
 };
 </script>
 <style scoped>
-.md-layout-item {
-  margin: 10px;
-}
 #dialog {
   border-radius: 60px;
   padding: 50px;
@@ -128,7 +121,20 @@ export default {
 .md-dialog-container {
   border-radius: 60px !important;
 }
-.card{
-  border-radius: 30px;
+.md-card {
+  border-radius: 20px;
+  padding: 5px;
+}
+.md-card-content {
+  display: flex;
+  justify-content: flex-start;
+}
+.md-card-header {
+  display: flex;
+  justify-content: flex-start;
+  
+}
+.DisAndLikes {
+  margin: 10px;
 }
 </style>
