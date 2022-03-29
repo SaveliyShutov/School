@@ -6,11 +6,11 @@
       </md-card-header>
       <md-field md-inline>
         <label>Почта</label>
-        <md-input v-model="form.email"></md-input>
+        <md-input v-model="email"></md-input>
       </md-field>
       <md-field md-inline>
         <label>Пароль</label>
-        <md-input v-model="form.password"></md-input>
+        <md-input v-model="password" type="password"></md-input>
       </md-field>
       <md-button v-on:click="submit()" class="md-primary">Отправить</md-button>
     </md-card>
@@ -19,31 +19,29 @@
 <script>
 import { mapGetters } from "vuex";
 import firebase from "firebase";
-import { gsap } from "gsap";
+// import { gsap } from "gsap";
 
 export default {
   data() {
     return {
-      form: {
-        email: "",
-        password: "",
-      },
+      email: "",
+      password: "",
       error: null,
     };
   },
    mounted() {
-    gsap.from("#card", {
-      scrollTrigger: {
-        trigger: "#card",
-        start: "top bottom-=200px",
-        once: true,
-        toggleActions: "restart pause resume pause",
-      },
+    // gsap.from("#card", {
+    //   scrollTrigger: {
+    //     trigger: "#card",
+    //     start: "top bottom-=200px",
+    //     once: true,
+    //     toggleActions: "restart pause resume pause",
+    //   },
       
       
-      x:-150,
-      duration: 2,
-    });
+    //   x:-150,
+    //   duration: 2,
+    // });
   },
   computed: {
     ...mapGetters({
@@ -52,20 +50,14 @@ export default {
     }),
   },
   methods: {
-    submit() {
-      console.log("Hello");
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.form.email, this.form.password)
-        .then(() => {
-          this.$router.replace({
-          name:"Answers",
-          });
-          console.log("Регистрация прошла успешно!");
-        })
-        .catch((err) => {
-          this.error = err.message;
-        });
+    async submit() {
+      try{
+        firebase.auth().signInWithEmailAndPassword(this.email, this.password) 
+        this.$router.replace({name: "Answers",});
+      }
+      catch(err){
+        console.log(err)
+      }
     },
   },
 };

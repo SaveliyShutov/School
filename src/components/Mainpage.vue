@@ -23,15 +23,11 @@
 
           <md-card-actions>
            
-            <md-button v-on:keyup.enter="submit" type="submit" class="md-primary" :disabled="sending"
+            <md-button type="submit" class="md-primary" :disabled="sending"
               >Отправить</md-button>
             
           </md-card-actions>
         </md-card>
-
-        <!-- <md-snackbar :md-active.sync="userSaved"
-          >The user {{ lastUser }} was saved with success!</md-snackbar
-        > -->
       </form>
       
     </div>
@@ -50,7 +46,8 @@ export default {
       textarea: "",
       number: 0 ,
       dislikes: 0,
-      likes: 0
+      likes: 0,
+      name:""
     };
   },
   methods: {
@@ -64,14 +61,15 @@ export default {
         .catch(function (error) {
           console.error("Error adding document: ", error);
         });
-      (this.textarea = ""), (this.number = 0), (this.likes = 0),(this.dislikes = 0);
+      (this.textarea = ""), (this.number = 0), (this.likes = 0),(this.dislikes = 0),(this.name = "");
     },
     createObject: function () {
       return {
         textarea: this.textarea,
         number: this.number,
         likes: this.likes,
-        dislikes: this.dislikes
+        dislikes: this.dislikes,
+        name: this.name
       };
     },
   },
