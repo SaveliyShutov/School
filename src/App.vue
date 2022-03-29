@@ -23,15 +23,14 @@ export default ({
     }),
   },
   methods: {
-    signOut() {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          this.$router.replace({
-            name: "Registration"
-          });
-        });
+    async signOut() {
+      try{
+        await firebase.auth().signOut()
+        this.$router.replace({name: "Registration"});
+      }
+      catch(err){
+        console.log(err);
+      }
     }
   }
 })
