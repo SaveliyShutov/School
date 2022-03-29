@@ -19,7 +19,7 @@
 <script>
 import { mapGetters } from "vuex";
 import firebase from "firebase";
-// import { gsap } from "gsap";
+
 
 export default {
   data() {
@@ -30,18 +30,6 @@ export default {
     };
   },
    mounted() {
-    // gsap.from("#card", {
-    //   scrollTrigger: {
-    //     trigger: "#card",
-    //     start: "top bottom-=200px",
-    //     once: true,
-    //     toggleActions: "restart pause resume pause",
-    //   },
-      
-      
-    //   x:-150,
-    //   duration: 2,
-    // });
   },
   computed: {
     ...mapGetters({
