@@ -1,17 +1,18 @@
 <template>
-  <div class="md-layout md-alignment-center-center">
-    <form action="#" @submit.prevent="submit">
-      <md-card
-        id="card"
-        class="md-layout-item md-layout md-size-30 md-small-size-90"
-      >
+  <div>
+    <form
+      action="#"
+      class="md-layout md-alignment-center-center"
+      @submit.prevent="submit()"
+    >
+      <md-card class="md-layout-item md-size-30 md-small-size-90">
         <md-card-header>
           <div class="md-title">Регистрация</div>
         </md-card-header>
 
         <md-field md-inline>
           <label>Имя</label>
-          <md-input v-model="name" md-counter="20"></md-input>
+          <md-input v-model="name" maxlength="20"></md-input>
         </md-field>
 
         <md-field md-inline>
@@ -20,7 +21,11 @@
         </md-field>
         <md-field md-inline>
           <label> Пароль</label>
-          <md-input v-model="password" md-counter="20"></md-input>
+          <md-input
+            v-model="password"
+            type="password"
+            maxlength="20"
+          ></md-input>
         </md-field>
 
         <md-button type="submit" class="md-primary">Отправить</md-button>
@@ -31,13 +36,14 @@
 <script>
 import firebase from "firebase";
 import "firebase/auth";
+const db = firebase.firestore();
 export default {
   data() {
     return {
-        name: "",
-        email: "",
-        password: "",
-        error: null,
+      name: "",
+      email: "",
+      password: "",
+      error: null,
     };
   },
   mounted() {
@@ -53,12 +59,20 @@ export default {
     // });
   },
   methods: {
-   async submit() {
+  async submit() {
       try {
-       firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
-       this.$router.replace({name: "Answers",});
-      }
-      catch (err) {
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(this.email, this.password)
+          .then((cred) => {
+            return db.collection("Users").doc(cred.user.uid).set({
+              name: this.name,
+              email: this.email,
+              password: this.password,
+            });
+          });
+        this.$router.replace({ name: "Answers" });
+      } catch (err) {
         console.log(err);
       }
     },
@@ -66,17 +80,9 @@ export default {
 };
 </script>
 <style scoped>
-.md-layout-item {
-  border-radius: 50px;
-  padding: 45px;
-  display: flex;
-  justify-content: center;
-}
-form {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  text-align: center;
-  margin: 10% auto;
+.md-card {
+  padding: 30px;
+  border-radius: 30px;
+  margin: 50px;
 }
 </style>

@@ -1,13 +1,14 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/QuestionForm">Question form</router-link> |
-      <router-link to="/">Answers</router-link> 
-   
-      <md-button v-if="user.loggedIn" v-on:click="signOut()" class="md-raised">LogOut</md-button>
+      <router-link id="q" to="/QuestionForm">Задать вопрос</router-link>
+      <router-link id="q" to="/">Ответы</router-link> 
+    <div id="flexEnd">
+      <md-button v-if="user.loggedIn" v-on:click="signOut()" class="md-raised">Выйти</md-button>
     <div v-else>
-      <router-link to="/Log">Log in</router-link> |
-      <router-link to="/Reg">Registration</router-link>
+      <router-link id="q" to="/Log">Войти</router-link> 
+      <router-link id="q" to="/Reg">Зарегистрироваться</router-link>
+    </div>
     </div>
     </div>
     <router-view />
@@ -38,24 +39,24 @@ export default ({
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Arial, Georgia, Times, 'Times New Roman', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #ffffff;
 }
 
 #nav {
-  background-color: #7b68ee;
-  padding: 30px;
+  background-color: #604ec5;
+  padding: 15px;
   display:flex;
   flex-direction:row;
   align-items:center;
 }
 
 #nav a {
-  font-weight: bold;
-  color: #2c3e50;
+  font-weight: normal;
+  color: #ffffff;
 }
 
 #nav a.router-link-exact-active {
@@ -63,7 +64,10 @@ export default ({
 }
 #flexEnd {
   display:flex;
-  justify-content:flex-end;
+  justify-content: space-between;
+}
+#q{
+  margin-right: 20px ;
 }
 
 </style>

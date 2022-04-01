@@ -2,9 +2,9 @@
   <div>
     <md-card class="card" md-with-hover>
       <md-ripple>
-        <md-card-header> {{ item.textarea }}</md-card-header>
+        <md-card-header> {{ item.shortQ }}</md-card-header>
         <md-card-content>
-          {{ item.userName }}
+          {{ item.name }}
         </md-card-content>
         <md-card-actions>
           <div class="DisAndLikes">
@@ -31,15 +31,15 @@
       </md-ripple>
     </md-card>
 
-    <md-dialog :md-active.sync="active">
-      <md-card id="dialog">
-        <p>Вы не зарегистрированы.</p>
-        <md-dialog-actions>
-          <md-button class="md-primary" @click="toReg">Registration</md-button>
-          <md-button class="md-primary" @click="toAuth">Log in</md-button>
-        </md-dialog-actions>
-      </md-card>
-    </md-dialog>
+    <md-snackbar
+      :md-position="center"
+      :md-duration="3000"
+      :md-active.sync="active"
+      md-persistent
+    >
+      <span>Вы не вошли в аккаунт!</span>
+      <md-button class="md-primary" @click="active = false">Ок</md-button>
+    </md-snackbar>
   </div>
 </template>
 
@@ -132,7 +132,6 @@ export default {
 .md-card-header {
   display: flex;
   justify-content: flex-start;
-  
 }
 .DisAndLikes {
   margin: 10px;

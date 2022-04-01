@@ -1,6 +1,6 @@
 <template>
   <div class="md-layout md-alignment-center-center">
-    <md-card id="card" class="md-layout-item md-layout md-size-25 md-small-size-80 ">
+    <md-card class="md-layout-item md-size-30 md-small-size-90">
       <md-card-header>
         <div class="md-title">Вход</div>
       </md-card-header>
@@ -19,8 +19,6 @@
 <script>
 import { mapGetters } from "vuex";
 import firebase from "firebase";
-
-
 export default {
   data() {
     return {
@@ -51,16 +49,9 @@ export default {
 };
 </script>
 <style scoped>
-.md-layout-item {
- border-radius:50px;
- padding:45px;
- 
-}
-.md-layout{
-  display:flex;
-  justify-content:center;
-  margin: 10% auto;
-
-
+.md-card {
+  padding: 30px;
+  border-radius: 30px;
+  margin: 50px;
 }
 </style>
