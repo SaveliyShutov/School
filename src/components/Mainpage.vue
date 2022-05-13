@@ -60,8 +60,9 @@ export default {
       textarea: "",
       dislikes: 0,
       likes: 0,
-      name: "Савелий",
+      name: "",
       shortQ: "",
+      answer: "",
       showSnackbar: false,
     };
   },
@@ -80,7 +81,9 @@ export default {
           (this.shortQ = ""),
           (this.likes = 0),
           (this.dislikes = 0),
-          (this.name = "SaveliyShutov");
+          (this.answer = ""),
+          (this.name = "");
+
       }
       else{
         this.showSnackbar = true;
@@ -93,6 +96,7 @@ export default {
         likes: this.likes,
         dislikes: this.dislikes,
         name: this.name,
+        answer: this.answer,
       };
     },
     toReg() {

@@ -5,6 +5,7 @@
         <md-card-header> {{ item.shortQ }}</md-card-header>
         <md-card-content>
           {{ item.name }}
+          {{ user.data.displayName }}
         </md-card-content>
         <md-card-actions>
           <div class="DisAndLikes">
@@ -22,7 +23,7 @@
               </md-button>
             </md-badge>
           </div>
-          <router-link :to="{ name: 'AnswerForm', params: { user: Ivan } }">
+          <router-link :to="{ name: 'AnswerForm', params: {item: this.item, ref: this.ref}}">
             <md-button v-on:click="toAnsForm(item.refId)" class="md-raised"
               >Ответить</md-button
             >
@@ -65,7 +66,7 @@ export default {
   },
   props: {
     item: Object,
-    index: Number,
+    index: Object
   },
   methods: {
     Likes(ref) {

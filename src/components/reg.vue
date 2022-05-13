@@ -37,6 +37,7 @@
 import firebase from "firebase";
 import "firebase/auth";
 const db = firebase.firestore();
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -59,7 +60,7 @@ export default {
     // });
   },
   methods: {
-  async submit() {
+    async submit() {
       try {
         firebase
           .auth()
@@ -68,7 +69,11 @@ export default {
             return db.collection("Users").doc(cred.user.uid).set({
               name: this.name,
               email: this.email,
-              password: this.password,
+            });
+          })
+          .then((data) => {
+            data.user.updateProfile({
+              displayName: this.name,
             });
           });
         this.$router.replace({ name: "Answers" });
@@ -76,6 +81,12 @@ export default {
         console.log(err);
       }
     },
+  },
+  computed: {
+    ...mapGetters({
+      user: "user",
+      userIn: "userIn",
+    }),
   },
 };
 </script>
